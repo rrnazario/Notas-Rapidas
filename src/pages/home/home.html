@@ -7,17 +7,6 @@
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-list no-lines> -->
-
-    <!-- <ion-item>
-      <ion-label fixed>Digite algo...</ion-label>
-      <ion-input [(ngModel)]="novaNota" type="text" value="" (keyup.enter)="addLista()"></ion-input>
-    </ion-item> -->
-  
-   <!-- <ion-label ion-item *ngFor="let item of items" fixed>{{item}}</ion-label> -->
-  
-
-  <!-- </ion-list> -->
   <ion-list>
     <ion-item no-lines>
       <ion-input placeholder="Digite algo..." [(ngModel)]="novaNota" type="text" value="" (keyup.enter)="addLista()"></ion-input>
@@ -32,7 +21,7 @@
 
   <ion-list no-lines>
     <ion-item>
-      <button ion-button full (click)="limpaLista()">
+      <button ion-button full (click)="limpaLista(true)">
         Limpar lista
       </button>
     </ion-item>

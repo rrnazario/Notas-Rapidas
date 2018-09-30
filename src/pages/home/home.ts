@@ -13,7 +13,6 @@ export const nomeStore = 'notas';
 export class HomePage {
   items: Array<string>;
   novaNota: string;  
-  db: any; //Banco de dados
 
   nomeBanco = 'dbnotas';
   versaoBanco = 1;
@@ -37,12 +36,11 @@ export class HomePage {
     request.onupgradeneeded = function () {
       // Criando outro objeto chamado "notas" com o autoIncrement setado.    
       request.result.createObjectStore(nomeStore, { autoIncrement : true });      
+      console.log("Banco criado com sucesso!");
     }
 
     request.onsuccess = () => {
       console.log("Banco conectado com sucesso.");
-
-      this.db = request.result;   
     };
   }
   
@@ -64,14 +62,29 @@ export class HomePage {
     };   
   }
 
-  limpaLista(){
+  limpaLista(clearDatabase = false){
     this.items = new Array<string>();
+
+    if (clearDatabase) {
+
+      var request = window.indexedDB.open(nomeBanco, versaoBanco);
+      request.onsuccess = () => {      
+  
+        var transaction = request.result.transaction(nomeStore, 'readwrite');
+        var objectStore = transaction.objectStore(nomeStore); 
+  
+        objectStore.clear().onsuccess = (event) => {
+          console.log("Lista limpa!");
+        };
+      }
+    }
   }
 
   addLista(){
     this.items.push(this.novaNota);    
     
     var request = window.indexedDB.open(nomeBanco, versaoBanco);
+
     request.onsuccess = () => {      
 
       var transaction = request.result.transaction(nomeStore, 'readwrite');
@@ -83,9 +96,7 @@ export class HomePage {
          console.log("Adicionado com sucesso!"); 
          this.novaNota = "";
       };
-    }
-    //Adicionar no banco de dados
-    
+    }    
   }
 
 }
