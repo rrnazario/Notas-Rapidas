@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Notas rapidas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- <ion-list no-lines> -->
+
+    <!-- <ion-item>
+      <ion-label fixed>Digite algo...</ion-label>
+      <ion-input [(ngModel)]="novaNota" type="text" value="" (keyup.enter)="addLista()"></ion-input>
+    </ion-item> -->
+  
+   <!-- <ion-label ion-item *ngFor="let item of items" fixed>{{item}}</ion-label> -->
+  
+
+  <!-- </ion-list> -->
+  <ion-list>
+    <ion-item no-lines>
+      <ion-input placeholder="Digite algo..." [(ngModel)]="novaNota" type="text" value="" (keyup.enter)="addLista()"></ion-input>
+    </ion-item>  
+  </ion-list>
+
+  <ion-list no-lines>
+    <button ion-item *ngFor="let item of items">
+      {{ item }}
+    </button>  
+  </ion-list>
+
+  <ion-list no-lines>
+    <ion-item>
+      <button ion-button full (click)="limpaLista()">
+        Limpar lista
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>
