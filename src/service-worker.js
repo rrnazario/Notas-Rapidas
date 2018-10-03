@@ -11,17 +11,13 @@ self.toolbox.options.cache = {
   name: 'notas-rapidas-cache' 
 };
 
-// pre-cache our key assets
+// pre-ca che our key assets
 self.toolbox.precache(
   [
     './build/main.js',
     './build/vendor.js',
     './build/main.css',
     './build/polyfills.js',
-    './app/app.html',
-    './pages/home/home.html',
-    './pages/home/home.ts',
-    './pages/home/home.scss',
     'index.html',
     'manifest.json'
   ]
