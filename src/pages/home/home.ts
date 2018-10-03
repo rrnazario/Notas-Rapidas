@@ -35,13 +35,10 @@ export class HomePage {
 
     request.onupgradeneeded = function () {
       // Criando outro objeto chamado "notas" com o autoIncrement setado.    
-      request.result.createObjectStore(nomeStore, { autoIncrement : true });      
-      console.log("Banco criado com sucesso!");
+      request.result.createObjectStore(nomeStore, { autoIncrement : true });            
     }
 
-    request.onsuccess = () => {
-      console.log("Banco conectado com sucesso.");
-    };
+    request.onsuccess = () => { };
   }
   
   obtemNotasBanco(){
@@ -63,8 +60,6 @@ export class HomePage {
   }
 
   limpaLista(clearDatabase = false){
-    this.items = new Array<string>();
-
     if (clearDatabase) {
 
       var request = window.indexedDB.open(nomeBanco, versaoBanco);
@@ -74,7 +69,7 @@ export class HomePage {
         var objectStore = transaction.objectStore(nomeStore); 
   
         objectStore.clear().onsuccess = (event) => {
-          console.log("Lista limpa!");
+          this.items = new Array<string>();
         };
       }
     }
@@ -93,7 +88,6 @@ export class HomePage {
       var added = objectStore.add(this.novaNota);
 
       added.onsuccess = () => {
-         console.log("Adicionado com sucesso!"); 
          this.novaNota = "";
       };
     }    
