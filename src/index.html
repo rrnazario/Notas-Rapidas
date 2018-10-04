@@ -32,7 +32,7 @@
   <!-- <script src="cordova.js"></script> -->
 
   
-  <script>
+  <script async>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js', { scope: "/" })
         .then(() => console.log('service worker installed'))
@@ -40,7 +40,9 @@
     }
   </script>
 
-  <link href="build/main.css" rel="stylesheet">
+  
+  <link rel="preload" href="build/main.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link href="build/main.css" rel="stylesheet"></noscript>
 
 </head>
 <body>
